@@ -8,6 +8,22 @@ import type { Diagnostic, Framework, OxlintOutput } from "../types.js";
 
 const esmRequire = createRequire(import.meta.url);
 
+/** Directories and files commonly containing generated/vendored code that should not be linted. */
+const IGNORED_PATTERNS = [
+  "public/**",
+  "dist/**",
+  "dist-*/**",
+  ".output/**",
+  ".nuxt/**",
+  ".next/**",
+  "coverage/**",
+  "__snapshots__/**",
+  "**/iconfont/**",
+  "**/*.min.js",
+  "**/*.min.mjs",
+  "**/vendor/**",
+];
+
 const PLUGIN_CATEGORY_MAP: Record<string, string> = {
   vue: "Correctness",
   "jsx-a11y": "Accessibility",
@@ -133,6 +149,10 @@ export const runOxlint = async (
 
     const oxlintBinary = resolveOxlintBinary();
     const args = [oxlintBinary, "-c", configPath, "--format", "json"];
+
+    for (const pattern of IGNORED_PATTERNS) {
+      args.push("--ignore-pattern", pattern);
+    }
 
     if (hasTypeScript) {
       args.push("--tsconfig", "./tsconfig.json");
