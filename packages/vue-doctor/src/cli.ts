@@ -18,6 +18,7 @@ interface CliFlags {
   verbose: boolean;
   score: boolean;
   yes: boolean;
+  deep: boolean;
   project?: string;
   diff?: boolean | string;
 }
@@ -65,6 +66,7 @@ const program = new Command()
   .option("-y, --yes", "skip prompts, scan all workspace projects")
   .option("--project <names>", "select workspace project (comma-separated)")
   .option("--diff [base]", "scan only files changed vs base branch")
+  .option("--deep", "use ESLint deep analysis instead of oxlint")
   .action(async (directory: string, flags: CliFlags) => {
     const isScoreOnly = flags.score;
     try {
@@ -88,6 +90,7 @@ const program = new Command()
           ? Boolean(flags.verbose)
           : (userConfig?.verbose ?? false),
         scoreOnly: isScoreOnly,
+        deep: Boolean(flags.deep),
       };
 
       const isAutomatedEnvironment = [

@@ -88,6 +88,7 @@ export interface ScanOptions {
   verbose?: boolean;
   scoreOnly?: boolean;
   includePaths?: string[];
+  deep?: boolean;
 }
 
 export interface DiffInfo {
@@ -128,10 +129,15 @@ export interface VueDoctorIgnoreConfig {
   files?: string[];
 }
 
+export interface VueDoctorEslintConfig {
+  configFile?: string;
+}
+
 export interface VueDoctorConfig {
   ignore?: VueDoctorIgnoreConfig;
   lint?: boolean;
   deadCode?: boolean;
   verbose?: boolean;
   diff?: boolean | string;
+  eslint?: VueDoctorEslintConfig;
 }

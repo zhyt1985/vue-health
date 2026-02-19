@@ -1,8 +1,14 @@
 {
   "name": "vue-doctor",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Diagnose and fix performance issues in your Vue app",
-  "keywords": ["diagnostics", "linter", "nuxt", "performance", "vue"],
+  "keywords": [
+    "diagnostics",
+    "linter",
+    "nuxt",
+    "performance",
+    "vue"
+  ],
   "homepage": "https://github.com/zhyt1985/vue-doctor#readme",
   "bugs": {
     "url": "https://github.com/zhyt1985/vue-doctor/issues"
@@ -17,7 +23,9 @@
   "bin": {
     "vue-doctor": "./dist/cli.mjs"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "exports": {
     ".": {
@@ -27,6 +35,10 @@
     "./api": {
       "types": "./dist/index.d.mts",
       "default": "./dist/index.mjs"
+    },
+    "./eslint-plugin": {
+      "types": "./dist/eslint-plugin/index.d.mts",
+      "default": "./dist/eslint-plugin/index.mjs"
     }
   },
   "scripts": {
@@ -37,12 +49,15 @@
   },
   "dependencies": {
     "commander": "^14.0.0",
+    "eslint": "^10.0.0",
+    "eslint-plugin-vue": "^10.8.0",
     "knip": "^5.83.1",
     "ora": "^9.3.0",
     "oxlint": "^1.47.0",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
-    "typescript": ">=5.0.4 <7"
+    "typescript": ">=5.0.4 <7",
+    "vue-eslint-parser": "^10.4.0"
   },
   "devDependencies": {
     "@types/prompts": "^2.4.9",

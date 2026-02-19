@@ -20,6 +20,7 @@ import { loadConfig } from "./utils/load-config.js";
 import { logger } from "./utils/logger.js";
 import { runKnip } from "./utils/run-knip.js";
 import { runOxlint } from "./utils/run-oxlint.js";
+import { runEslint } from "./utils/run-eslint.js";
 import { spinner } from "./utils/spinner.js";
 
 const SEVERITY_ORDER: Record<string, number> = { error: 0, warning: 1 };
@@ -135,6 +136,7 @@ export const scan = async (
     verbose = false,
     scoreOnly = false,
     includePaths,
+    deep = false,
   } = options;
 
   const startTime = performance.now();
@@ -152,18 +154,30 @@ export const scan = async (
 
   // Run lint checks
   if (lint) {
-    if (!scoreOnly) spinner.start("Running lint checks...");
-    try {
-      const lintDiagnostics = await runOxlint(
-        rootDirectory,
-        project.hasTypeScript,
-        project.framework,
-        includePaths,
-      );
-      diagnostics.push(...lintDiagnostics);
-      if (!scoreOnly) spinner.succeed(`Found ${lintDiagnostics.length} lint issues`);
-    } catch (error) {
-      if (!scoreOnly) spinner.fail("Lint check failed");
+    if (deep) {
+      if (!scoreOnly) spinner.start("Running deep analysis (ESLint)...");
+      try {
+        const eslintConfigFile = config?.eslint?.configFile;
+        const lintDiagnostics = await runEslint(rootDirectory, includePaths, eslintConfigFile);
+        diagnostics.push(...lintDiagnostics);
+        if (!scoreOnly) spinner.succeed(`Found ${lintDiagnostics.length} lint issues (deep)`);
+      } catch (error) {
+        if (!scoreOnly) spinner.fail("Deep analysis failed");
+      }
+    } else {
+      if (!scoreOnly) spinner.start("Running lint checks...");
+      try {
+        const lintDiagnostics = await runOxlint(
+          rootDirectory,
+          project.hasTypeScript,
+          project.framework,
+          includePaths,
+        );
+        diagnostics.push(...lintDiagnostics);
+        if (!scoreOnly) spinner.succeed(`Found ${lintDiagnostics.length} lint issues`);
+      } catch (error) {
+        if (!scoreOnly) spinner.fail("Lint check failed");
+      }
     }
   }
 

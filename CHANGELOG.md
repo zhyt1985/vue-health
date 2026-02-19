@@ -1,5 +1,38 @@
 # Changelog
 
+## 1.0.0 (2026-02-19)
+
+### 重大变更
+
+- 新增 `--deep` 深度分析模式，使用 ESLint + eslint-plugin-vue + vue-doctor 自定义规则
+- 默认模式保持 oxlint 快速扫描，深度模式提供 Vue 特有问题的深度检查
+- 双引擎架构：oxlint（默认） + ESLint `--deep`（可选）
+
+### 新增功能
+
+- 新增 `--deep` 参数，启用 ESLint 深度分析
+- 新增 7 条 vue-doctor 自定义 ESLint 规则：
+  - `no-reactive-destructure`: 禁止 ref 对象解构（会导致响应性丢失）
+  - `no-ref-in-computed`: 禁止在 computed 中直接使用 ref（会导致响应性丢失）
+  - `no-async-watcheffect`: 禁止 async WatchEffect（副作用不会等待异步完成）
+  - `no-index-as-key`: 禁止使用 v-for index 作为 :key（会导致 DOM 复用错误）
+  - `no-expensive-inline-expression`: 内联表达式禁止昂贵计算
+  - `no-giant-component`: 组件代码行数上限（500 行）
+  - `no-secrets-in-client`: 禁止前端代码中硬编码密钥
+- `require-emits-declaration`: 要求组件声明 emits
+- ESLint 配置加载失败时自动 fallback 到内置规则集
+
+### 实战验证
+
+在 4 个主流开源 Vue 项目上完成双引擎验证：
+
+| 项目 | 默认模式 | 深度模式 | 配置 fallback |
+|------|----------|----------|---------------|
+| VitePress (230 files) | 28 issues / 89分 | 60 issues / 85分 | 内置规则 |
+| VueUse (838 files) | 19 issues / 91分 | 149 issues / 85分 | 用户配置→内置 |
+| Naive UI (3212 files) | 40 issues / 89分 | 6294 issues / 75分 | 用户配置→内置 |
+| vue-pure-admin (490 files) | 60 issues / 90分 | 1046 issues / 71分 | 用户配置→内置 |
+
 ## 0.0.2 (2026-02-19)
 
 ### Bug Fixes
