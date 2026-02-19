@@ -1,15 +1,15 @@
-# vue-doctor
+# vue-health
 
 English | [中文](./README.zh-CN.md)
 
 One command to diagnose your Vue codebase health.
 
 ```bash
-npx vue-doctor .
+npx vue-health .
 ```
 
 ```
-vue-doctor v0.0.1
+vue-health v0.0.1
 
   Nuxt (Vue ^3.5.0) · 128 source files
 
@@ -43,16 +43,16 @@ vue-doctor v0.0.1
 - **Dead code detection** — unused files, exports, and types via [knip](https://knip.dev)
 - **Diff mode** — only scan changed files on your branch
 - **Monorepo support** — select which workspace projects to scan
-- **Programmable** — `import { diagnose } from "vue-doctor/api"`
+- **Programmable** — `import { diagnose } from "vue-health/api"`
 
 ## Install
 
 ```bash
 # Run directly (no install needed)
-npx vue-doctor .
+npx vue-health .
 
 # Or install globally
-npm i -g vue-doctor
+npm i -g vue-health
 ```
 
 Requires Node.js >= 20.
@@ -60,7 +60,7 @@ Requires Node.js >= 20.
 ## CLI
 
 ```
-Usage: vue-doctor [options] [directory]
+Usage: vue-health [options] [directory]
 
 Arguments:
   directory          project directory to scan (default: ".")
@@ -81,28 +81,28 @@ Options:
 
 ```bash
 # Scan current directory
-vue-doctor .
+vue-health .
 
 # Only show the score (useful in CI)
-vue-doctor . --score
+vue-health . --score
 
 # Scan only changed files vs main
-vue-doctor . --diff
+vue-health . --diff
 
 # Scan with file-level details
-vue-doctor . --verbose
+vue-health . --verbose
 
 # Skip dead code detection
-vue-doctor . --no-dead-code
+vue-health . --no-dead-code
 
 # Scan a specific workspace project
-vue-doctor . --project my-app
+vue-health . --project my-app
 ```
 
 ## Node.js API
 
 ```ts
-import { diagnose } from "vue-doctor/api";
+import { diagnose } from "vue-health/api";
 
 const { diagnostics, score } = await diagnose("./my-vue-app");
 
@@ -178,7 +178,7 @@ Errors weigh 3x more than warnings.
 
 ## Configuration
 
-Create `.vue-doctorrc` or `.vue-doctorrc.json` in your project root:
+Create `.vue-healthrc` or `.vue-healthrc.json` in your project root:
 
 ```json
 {

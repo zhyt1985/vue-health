@@ -1,4 +1,4 @@
-# vue-doctor 实战验证报告
+# vue-health 实战验证报告
 
 日期：2026-02-19
 版本：v1.0.0
@@ -68,7 +68,7 @@ oxlint 扫描了 `public/`、`dist/` 等目录下的生成文件，导致 vue-pu
 
 | 项目 | 用户 eslint 配置 | --deep 使用的配置 |
 |------|-----------------|------------------|
-| VitePress | 无 | 内置规则集（eslint-plugin-vue + vue-doctor 自定义规则） |
+| VitePress | 无 | 内置规则集（eslint-plugin-vue + vue-health 自定义规则） |
 | VueUse | `eslint.config.js`（依赖 `@antfu/eslint-config`，未安装） | Fallback 到内置规则集 |
 | Naive UI | `eslint.config.mjs`（依赖未安装） | Fallback 到内置规则集 |
 | vue-pure-admin | `eslint.config.js`（依赖未安装） | Fallback 到内置规则集 |
@@ -77,9 +77,9 @@ oxlint 扫描了 `public/`、`dist/` 等目录下的生成文件，导致 vue-pu
 
 ### 深度模式发现的典型问题（oxlint 未覆盖）
 
-**vue-doctor 自定义规则命中：**
-- `vue-doctor/no-index-as-key` — vue-pure-admin 中 12 处使用 v-for index 作为 :key
-- `vue-doctor/no-reactive-destructure` — VueUse、vue-pure-admin 中发现 ref 对象解构导致响应性丢失
+**vue-health 自定义规则命中：**
+- `vue-health/no-index-as-key` — vue-pure-admin 中 12 处使用 v-for index 作为 :key
+- `vue-health/no-reactive-destructure` — VueUse、vue-pure-admin 中发现 ref 对象解构导致响应性丢失
 
 **eslint-plugin-vue 高价值规则命中：**
 - `vue/prefer-use-template-ref` — VitePress 3 处、vue-pure-admin 58 处应使用 `useTemplateRef` 替代 `ref`
@@ -93,7 +93,7 @@ oxlint 扫描了 `public/`、`dist/` 等目录下的生成文件，导致 vue-pu
 
 1. 默认模式（oxlint）结果与之前验证一致，评分无偏差
 2. 深度模式（ESLint `--deep`）在四个项目上均正常完成，无崩溃
-3. 深度模式发现了大量 oxlint 未覆盖的 Vue 特有问题，尤其是 `vue/no-undef-components`、`vue/prefer-use-template-ref` 和 vue-doctor 自定义规则
+3. 深度模式发现了大量 oxlint 未覆盖的 Vue 特有问题，尤其是 `vue/no-undef-components`、`vue/prefer-use-template-ref` 和 vue-health 自定义规则
 4. 配置 fallback 机制正常工作：用户配置加载失败时自动降级到内置规则集
 5. 深度模式耗时约为默认模式的 1.5-5 倍，但仍在秒级完成（最大项目 Naive UI 3212 文件仅需 853ms）
 6. 修复了 `runEslint` 中用户配置加载失败时未 fallback 的 bug

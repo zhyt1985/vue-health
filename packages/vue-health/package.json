@@ -1,6 +1,6 @@
 {
-  "name": "vue-doctor",
-  "version": "1.0.0",
+  "name": "vue-health",
+  "version": "2.0.0",
   "description": "Diagnose and fix performance issues in your Vue app",
   "keywords": [
     "diagnostics",
@@ -9,19 +9,19 @@
     "performance",
     "vue"
   ],
-  "homepage": "https://github.com/zhyt1985/vue-doctor#readme",
+  "homepage": "https://github.com/zhyt1985/vue-health#readme",
   "bugs": {
-    "url": "https://github.com/zhyt1985/vue-doctor/issues"
+    "url": "https://github.com/zhyt1985/vue-health/issues"
   },
   "license": "MIT",
   "author": "zhyt1985",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zhyt1985/vue-doctor.git",
-    "directory": "packages/vue-doctor"
+    "url": "https://github.com/zhyt1985/vue-health.git",
+    "directory": "packages/vue-health"
   },
   "bin": {
-    "vue-doctor": "./dist/cli.mjs"
+    "vue-health": "./dist/cli.mjs"
   },
   "files": [
     "dist"

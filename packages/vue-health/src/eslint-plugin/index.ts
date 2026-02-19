@@ -21,24 +21,24 @@ const rules: Record<string, any> = {
 
 const plugin: ESLint.Plugin & { configs: Record<string, Linter.Config> } = {
   meta: {
-    name: "eslint-plugin-vue-doctor",
-    version: "0.0.1",
+    name: "eslint-plugin-vue-health",
+    version: "2.0.0",
   },
   rules,
   configs: {},
 };
 
 plugin.configs.recommended = {
-  plugins: { "vue-doctor": plugin as any },
+  plugins: { "vue-health": plugin as any },
   rules: {
-    "vue-doctor/no-reactive-destructure": "error",
-    "vue-doctor/no-ref-in-computed": "error",
-    "vue-doctor/no-async-watcheffect": "warn",
-    "vue-doctor/no-index-as-key": "warn",
-    "vue-doctor/no-expensive-inline-expression": "warn",
-    "vue-doctor/no-giant-component": "warn",
-    "vue-doctor/no-secrets-in-client": "error",
-    "vue-doctor/require-emits-declaration": "warn",
+    "vue-health/no-reactive-destructure": "error",
+    "vue-health/no-ref-in-computed": "error",
+    "vue-health/no-async-watcheffect": "warn",
+    "vue-health/no-index-as-key": "warn",
+    "vue-health/no-expensive-inline-expression": "warn",
+    "vue-health/no-giant-component": "warn",
+    "vue-health/no-secrets-in-client": "error",
+    "vue-health/require-emits-declaration": "warn",
   },
 };
 

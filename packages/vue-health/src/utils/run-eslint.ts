@@ -28,27 +28,27 @@ const SELECTED_VUE_RULES: Record<string, string | [string, ...any[]]> = {
   "vue/no-empty-component-block": "warn",
 };
 
-/** vue-doctor custom rules for deep mode */
-const VUE_DOCTOR_RULES: Record<string, string | [string, ...any[]]> = {
-  "vue-doctor/no-reactive-destructure": "error",
-  "vue-doctor/no-ref-in-computed": "error",
-  "vue-doctor/no-async-watcheffect": "warn",
-  "vue-doctor/no-index-as-key": "warn",
-  "vue-doctor/no-expensive-inline-expression": "warn",
-  "vue-doctor/no-giant-component": "warn",
-  "vue-doctor/no-secrets-in-client": "error",
-  "vue-doctor/require-emits-declaration": "warn",
+/** vue-health custom rules for deep mode */
+const VUE_HEALTH_RULES: Record<string, string | [string, ...any[]]> = {
+  "vue-health/no-reactive-destructure": "error",
+  "vue-health/no-ref-in-computed": "error",
+  "vue-health/no-async-watcheffect": "warn",
+  "vue-health/no-index-as-key": "warn",
+  "vue-health/no-expensive-inline-expression": "warn",
+  "vue-health/no-giant-component": "warn",
+  "vue-health/no-secrets-in-client": "error",
+  "vue-health/require-emits-declaration": "warn",
 };
 
 const RULE_CATEGORY_MAP: Record<string, string> = {
-  "vue-doctor/no-reactive-destructure": "Correctness",
-  "vue-doctor/no-ref-in-computed": "Correctness",
-  "vue-doctor/no-async-watcheffect": "Correctness",
-  "vue-doctor/no-index-as-key": "Performance",
-  "vue-doctor/no-expensive-inline-expression": "Performance",
-  "vue-doctor/no-giant-component": "Best Practices",
-  "vue-doctor/no-secrets-in-client": "Security",
-  "vue-doctor/require-emits-declaration": "Best Practices",
+  "vue-health/no-reactive-destructure": "Correctness",
+  "vue-health/no-ref-in-computed": "Correctness",
+  "vue-health/no-async-watcheffect": "Correctness",
+  "vue-health/no-index-as-key": "Performance",
+  "vue-health/no-expensive-inline-expression": "Performance",
+  "vue-health/no-giant-component": "Best Practices",
+  "vue-health/no-secrets-in-client": "Security",
+  "vue-health/require-emits-declaration": "Best Practices",
   "vue/no-ref-object-reactivity-loss": "Correctness",
   "vue/prefer-use-template-ref": "Best Practices",
   "vue/no-v-html": "Security",
@@ -73,11 +73,11 @@ const createBuiltinConfig = async (): Promise<any[]> => {
       },
       plugins: {
         vue: vuePlugin.default ?? vuePlugin,
-        "vue-doctor": vueDoctorPlugin.default ?? vueDoctorPlugin,
+        "vue-health": vueDoctorPlugin.default ?? vueDoctorPlugin,
       },
       rules: {
         ...SELECTED_VUE_RULES,
-        ...VUE_DOCTOR_RULES,
+        ...VUE_HEALTH_RULES,
       },
     },
   ];
@@ -86,7 +86,7 @@ const createBuiltinConfig = async (): Promise<any[]> => {
 const resolveCategory = (ruleId: string): string => {
   if (RULE_CATEGORY_MAP[ruleId]) return RULE_CATEGORY_MAP[ruleId];
   if (ruleId.startsWith("vue/")) return "Best Practices";
-  if (ruleId.startsWith("vue-doctor/")) return "Best Practices";
+  if (ruleId.startsWith("vue-health/")) return "Best Practices";
   return "Other";
 };
 

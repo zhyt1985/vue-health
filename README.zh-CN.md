@@ -1,15 +1,15 @@
-# vue-doctor
+# vue-health
 
 一条命令，诊断你的 Vue 代码库健康状况。
 
 [English](./README.md) | 中文
 
 ```bash
-npx vue-doctor .
+npx vue-health .
 ```
 
 ```
-vue-doctor v0.0.1
+vue-health v0.0.1
 
   Nuxt (Vue ^3.5.0) · 128 source files
 
@@ -43,16 +43,16 @@ vue-doctor v0.0.1
 - **死代码检测** — 通过 [knip](https://knip.dev) 发现未使用的文件、导出和类型
 - **Diff 模式** — 仅扫描当前分支变更的文件，适合 CI/PR 场景
 - **Monorepo 支持** — 可选择扫描 workspace 中的特定项目
-- **可编程** — `import { diagnose } from "vue-doctor/api"`
+- **可编程** — `import { diagnose } from "vue-health/api"`
 
 ## 安装
 
 ```bash
 # 直接运行（无需安装）
-npx vue-doctor .
+npx vue-health .
 
 # 或全局安装
-npm i -g vue-doctor
+npm i -g vue-health
 ```
 
 需要 Node.js >= 20。
@@ -60,7 +60,7 @@ npm i -g vue-doctor
 ## 命令行
 
 ```
-Usage: vue-doctor [options] [directory]
+Usage: vue-health [options] [directory]
 
 Arguments:
   directory          要扫描的项目目录（默认 "."）
@@ -81,28 +81,28 @@ Options:
 
 ```bash
 # 扫描当前目录
-vue-doctor .
+vue-health .
 
 # 仅输出分数（适合 CI）
-vue-doctor . --score
+vue-health . --score
 
 # 仅扫描相对于 main 分支的变更文件
-vue-doctor . --diff
+vue-health . --diff
 
 # 显示文件级别详情
-vue-doctor . --verbose
+vue-health . --verbose
 
 # 跳过死代码检测
-vue-doctor . --no-dead-code
+vue-health . --no-dead-code
 
 # 扫描指定的 workspace 项目
-vue-doctor . --project my-app
+vue-health . --project my-app
 ```
 
 ## Node.js API
 
 ```ts
-import { diagnose } from "vue-doctor/api";
+import { diagnose } from "vue-health/api";
 
 const { diagnostics, score } = await diagnose("./my-vue-app");
 
@@ -178,7 +178,7 @@ error 的权重是 warning 的 3 倍。
 
 ## 配置
 
-在项目根目录创建 `.vue-doctorrc` 或 `.vue-doctorrc.json`：
+在项目根目录创建 `.vue-healthrc` 或 `.vue-healthrc.json`：
 
 ```json
 {

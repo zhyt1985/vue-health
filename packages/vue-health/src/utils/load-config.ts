@@ -3,10 +3,10 @@ import path from "node:path";
 import type { VueDoctorConfig } from "../types.js";
 
 const CONFIG_FILENAMES = [
-  "vue-doctor.config.json",
-  "vue-doctor.config.js",
-  "vue-doctor.config.mjs",
-  ".vue-doctor.json",
+  "vue-health.config.json",
+  "vue-health.config.js",
+  "vue-health.config.mjs",
+  ".vue-health.json",
 ];
 
 export const loadConfig = (rootDirectory: string): VueDoctorConfig | null => {
@@ -23,8 +23,8 @@ export const loadConfig = (rootDirectory: string): VueDoctorConfig | null => {
   const packageJsonPath = path.join(rootDirectory, "package.json");
   if (fs.existsSync(packageJsonPath)) {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
-    if (packageJson["vue-doctor"]) {
-      return packageJson["vue-doctor"] as VueDoctorConfig;
+    if (packageJson["vue-health"]) {
+      return packageJson["vue-health"] as VueDoctorConfig;
     }
   }
 

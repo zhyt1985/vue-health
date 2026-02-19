@@ -141,7 +141,7 @@ export const runOxlint = async (
 ): Promise<Diagnostic[]> => {
   if (includePaths !== undefined && includePaths.length === 0) return [];
 
-  const configPath = path.join(os.tmpdir(), `vue-doctor-oxlintrc-${process.pid}.json`);
+  const configPath = path.join(os.tmpdir(), `vue-health-oxlintrc-${process.pid}.json`);
   const config = createOxlintConfig(framework);
 
   try {

@@ -1,5 +1,5 @@
 {
-  "name": "vue-doctor-monorepo",
+  "name": "vue-health-monorepo",
   "private": true,
   "packageManager": "pnpm@10.29.1",
   "scripts": {

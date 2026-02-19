@@ -10,7 +10,7 @@ import { logger } from "./utils/logger.js";
 import { prompts } from "./utils/prompts.js";
 import { selectProjects } from "./utils/select-projects.js";
 
-const VERSION = process.env.VERSION ?? "0.0.1";
+const VERSION = process.env.VERSION ?? "2.0.0";
 
 interface CliFlags {
   lint: boolean;
@@ -55,7 +55,7 @@ const resolveDiffMode = async (
 };
 
 const program = new Command()
-  .name("vue-doctor")
+  .name("vue-health")
   .description("Diagnose Vue codebase health")
   .version(VERSION, "-v, --version", "display the version number")
   .argument("[directory]", "project directory to scan", ".")
@@ -74,7 +74,7 @@ const program = new Command()
       const userConfig = loadConfig(resolvedDirectory);
 
       if (!isScoreOnly) {
-        logger.log(`vue-doctor v${VERSION}`);
+        logger.log(`vue-health v${VERSION}`);
         logger.break();
       }
 
@@ -162,7 +162,7 @@ const program = new Command()
     "after",
     `
 ${highlighter.dim("Learn more:")}
-${highlighter.info("https://github.com/zhyt1985/vue-doctor")}
+${highlighter.info("https://github.com/zhyt1985/vue-health")}
 `,
   );
 
